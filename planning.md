@@ -10,7 +10,11 @@
 ## Domain
 
 <!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
+Regional flavor profiles of coffee
 
+This knowledge is valuable because most coffee drinkers encounter tasting notes every day (on bags, menus, and roaster websites) but have no framework for making sense of them. Knowing that Ethiopian coffees tend toward floral and fruity while Sumatran coffees lean earthy and full-bodied gives you a mental model that applies across every cup you'll ever drink.
+
+It's hard to find through official channels because the information is scattered and inconsistent. Roasters write tasting notes to sell their specific product, not to teach the underlying patterns. The Specialty Coffee Association has rigorous educational materials, but they're designed for industry professionals, not everyday drinkers. No single authoritative source draws the complete map — you have to triangulate across dozens of roasters, importers, and review sites to piece it together yourself.
 ---
 
 ## Documents
@@ -20,16 +24,16 @@
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Cafe Imports| Leading green coffee importer with detailed origin guides covering flavor, geography, processing | cafeimports.com |
+| 2 | Counter Culture Coffee | Specialty roaster with transparent origin profiles and educational resources on regional flavor  | counterculturecoffee.com |
+| 3 | Royal Coffee - The Crown | Trade blog by a major importer with deep origin breakdowns written for serious coffee people | royalcoffee.com/the-crown |
+| 4 | Coffee Review | Kenneth Davids' long-running review site with thousands of scored coffees organized by origin | coffeereview.com |
+| 5 | Sprudge | Coffee journalism covering origin stories, farm visits, and regional flavor trends | sprudge.com |
+| 6 | Perfect Daily Grind | Trade publication with accessible explainers on origin, terroir, processing, flavor development  | perfectdailygrind.com |
+| 7 | SCA  | Industry standard organization with educational materials on sensory science and origin          | sca.coffee |
+| 8 | James Hoffmann (YouTube) | Clear, well-researched videos on origin characteristics and what drives regional flavor | youtube.com/@jameshoffmann|
+| 9 | r/coffee | Community discussions where real drinkers describe regional flavor experiences in plain language  | reddit.com/r/coffee|
+| 10| Home Barista Forum  | Technical community with nuanced origin and flavor discussions from experienced home brewers | homebarista.com |
 
 ---
 
