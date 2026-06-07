@@ -24,16 +24,19 @@ It's hard to find through official channels because the information is scattered
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | Cafe Imports| Leading green coffee importer with detailed origin guides covering flavor, geography, processing | cafeimports.com |
-| 2 | Counter Culture Coffee | Specialty roaster with transparent origin profiles and educational resources on regional flavor  | counterculturecoffee.com |
-| 3 | Royal Coffee - The Crown | Trade blog by a major importer with deep origin breakdowns written for serious coffee people | royalcoffee.com/the-crown |
+| 1 | Espresso Coffee Guide| Costa Rica Coffee | https://espressocoffeeguide.com/gourmet-coffee/coffees-of-the-americas/costa-rica-coffee/ |
+| 2 | Wikipedia - History of Coffee | A history of coffee and how different coffee beans grew from its origins  | https://en.wikipedia.org/wiki/History_of_coffee |
+| 3 | Sweet Maria's | Brazil Coffee bean profile | https://library.sweetmarias.com/coffee-producing-countries/south-america/brazil-coffee-overview/ |
 | 4 | Coffee Review | Kenneth Davids' long-running review site with thousands of scored coffees organized by origin | coffeereview.com |
-| 5 | Sprudge | Coffee journalism covering origin stories, farm visits, and regional flavor trends | sprudge.com |
-| 6 | Perfect Daily Grind | Trade publication with accessible explainers on origin, terroir, processing, flavor development  | perfectdailygrind.com |
-| 7 | SCA  | Industry standard organization with educational materials on sensory science and origin          | sca.coffee |
-| 8 | James Hoffmann (YouTube) | Clear, well-researched videos on origin characteristics and what drives regional flavor | youtube.com/@jameshoffmann|
-| 9 | r/coffee | Community discussions where real drinkers describe regional flavor experiences in plain language  | reddit.com/r/coffee|
-| 10| Home Barista Forum  | Technical community with nuanced origin and flavor discussions from experienced home brewers | homebarista.com |
+| 5 | Cooper Coffee Co. | Columbian Coffee profile | https://www.cooperscoffeeco.com/discover-the-rich-flavors-what-does-colombian-coffee-taste-like/?srsltid=AfmBOoqFCzpmkRplljGdNdaaTQyQZ2x1HSRrR-zLVM15AFfF7d8Gvrgo |
+| 6 | Kona Farm Direct | Hawaii Coffee Beans  | https://www.konafarmdirect.com/post/the-ultimate-guide-to-kona-coffee-what-makes-it-the-world-s-most-sought-after-bean |
+| 7 | Sweet Maria's  |  Sumatra Coffee | https://library.sweetmarias.com/coffee-producing-countries/indonesia-se-asia/sumatra-coffee-overview/ |
+| 8 | Lavazz | Comparison of Arabica vs Robusta | https://www.lavazzausa.com/en/recipes-and-coffee-hacks/difference-type-arabica-robusta-coffee|
+| 9 | The Extraordinary Rise: How Yunnan Coffee Became Asia’s New Coffee Champion | Yunnan Coffee profile  | https://naturebrewescape.com/the-extraordinary-rise-how-yunnan-coffee-became-asias-new-coffee-champion/|
+| 10| Homelandcoffee  | Uganda coffee profile| https://homelandcoffee.co/blogs/our-blog/the-flavor-profile-of-ugandan-coffee?srsltid=AfmBOoroFIhGPOwUCy1CI0jJrK29wnAiGw6Mu4n7gBtAuiDhUDfcr7Uw |
+| 11| Sweet Maria's | Ecuador coffee profile | https://library.sweetmarias.com/coffee-producing-countries/south-america/ecuador-coffee-overview/|
+| 12| Sweet Maria's | Kenya Coffee profile | https://library.sweetmarias.com/coffee-producing-countries/africa/kenya-coffee-overview/|
+| 13|  Suvie| yirgacheffe coffee | https://blog.suvie.com/a-beginners-guide-to-coffee-ethiopian-yirgacheffe|
 
 ---
 
