@@ -22,8 +22,9 @@ from ingest import Document, build_chunks
 # always lands in the project root regardless of the working directory.
 CHROMA_DIR = (Path(__file__).parent / config.CHROMA_PATH).resolve()
 
-# Cache the embedding model across calls (loading bge-large-en-v1.5 is expensive).
+# Cache the embedding model and Chroma client across calls.
 _model: SentenceTransformer | None = None
+_client: chromadb.ClientAPI | None = None
 
 
 def get_model() -> SentenceTransformer:
@@ -32,6 +33,26 @@ def get_model() -> SentenceTransformer:
     if _model is None:
         _model = SentenceTransformer(config.EMBEDDING_MODEL)
     return _model
+
+
+def get_client() -> chromadb.ClientAPI:
+    """Return the (cached) persistent Chroma client rooted at CHROMA_DIR."""
+    global _client
+    if _client is None:
+        _client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+    return _client
+
+
+def get_collection() -> chromadb.api.models.Collection.Collection:
+    """Get-or-create the project's Chroma collection (cosine space).
+
+    Safe to call before ingestion: returns an empty collection rather than
+    raising, so startup code can check `.count()` to decide whether to ingest.
+    """
+    return get_client().get_or_create_collection(
+        name=config.CHROMA_COLLECTION,
+        metadata={"hnsw:space": "cosine"},
+    )
 
 
 def embed_texts(texts: list[str]) -> list[list[float]]:
@@ -69,7 +90,7 @@ def embed_and_store(
     if not chunks:
         raise ValueError("No chunks to embed — check the documents/ folder.")
 
-    client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+    client = get_client()
 
     if reset:
         try:

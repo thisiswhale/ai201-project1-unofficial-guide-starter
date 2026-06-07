@@ -12,25 +12,11 @@ from __future__ import annotations
 
 from typing import Any
 
-import chromadb
-
-import config
-from embedding import CHROMA_DIR, get_model
+from embedding import get_collection, get_model
 
 # bge models recommend this instruction prefix on the QUERY side only (passages
 # were embedded without it in embedding.py).
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
-
-_collection: chromadb.api.models.Collection.Collection | None = None
-
-
-def get_collection() -> chromadb.api.models.Collection.Collection:
-    """Open (once) the persisted Chroma collection built by embedding.py."""
-    global _collection
-    if _collection is None:
-        client = chromadb.PersistentClient(path=str(CHROMA_DIR))
-        _collection = client.get_collection(config.CHROMA_COLLECTION)
-    return _collection
 
 
 def embed_query(query: str) -> list[float]:
