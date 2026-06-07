@@ -27,7 +27,8 @@ It's hard to find through official channels because the information is scattered
 | 1 | Espresso Coffee Guide| Costa Rica Coffee | https://espressocoffeeguide.com/gourmet-coffee/coffees-of-the-americas/costa-rica-coffee/ |
 | 2 | Wikipedia - History of Coffee | A history of coffee and how different coffee beans grew from its origins  | https://en.wikipedia.org/wiki/History_of_coffee |
 | 3 | Sweet Maria's | Brazil Coffee bean profile | https://library.sweetmarias.com/coffee-producing-countries/south-america/brazil-coffee-overview/ |
-| 4 | Coffee Review | Kenneth Davids' long-running review site with thousands of scored coffees organized by origin | coffeereview.com |
+| 4|  Suvie| yirgacheffe coffee | https://blog.suvie.com/a-beginners-guide-to-coffee-ethiopian-yirgacheffe|
+
 | 5 | Cooper Coffee Co. | Columbian Coffee profile | https://www.cooperscoffeeco.com/discover-the-rich-flavors-what-does-colombian-coffee-taste-like/?srsltid=AfmBOoqFCzpmkRplljGdNdaaTQyQZ2x1HSRrR-zLVM15AFfF7d8Gvrgo |
 | 6 | Kona Farm Direct | Hawaii Coffee Beans  | https://www.konafarmdirect.com/post/the-ultimate-guide-to-kona-coffee-what-makes-it-the-world-s-most-sought-after-bean |
 | 7 | Sweet Maria's  |  Sumatra Coffee | https://library.sweetmarias.com/coffee-producing-countries/indonesia-se-asia/sumatra-coffee-overview/ |
@@ -36,7 +37,6 @@ It's hard to find through official channels because the information is scattered
 | 10| Homelandcoffee  | Uganda coffee profile| https://homelandcoffee.co/blogs/our-blog/the-flavor-profile-of-ugandan-coffee?srsltid=AfmBOoroFIhGPOwUCy1CI0jJrK29wnAiGw6Mu4n7gBtAuiDhUDfcr7Uw |
 | 11| Sweet Maria's | Ecuador coffee profile | https://library.sweetmarias.com/coffee-producing-countries/south-america/ecuador-coffee-overview/|
 | 12| Sweet Maria's | Kenya Coffee profile | https://library.sweetmarias.com/coffee-producing-countries/africa/kenya-coffee-overview/|
-| 13|  Suvie| yirgacheffe coffee | https://blog.suvie.com/a-beginners-guide-to-coffee-ethiopian-yirgacheffe|
 
 ---
 
@@ -112,25 +112,25 @@ Embedding model: bge-large-en-v1.5 accommodates the mixed-length corpus of short
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
 ```mermaid
 flowchart TD
-    SRC["13 source URLs<br/>(Sweet Maria's, Espresso Coffee Guide,<br/>Wikipedia, bean-profile blogs)"]
+    SRC["12 source documents<br/>(saved as .txt in documents/:<br/>Sweet Maria's, Espresso Coffee Guide,<br/>Wikipedia, bean-profile blogs)"]
 
     subgraph S1["1 · Document Ingestion"]
-        I["LangChain document loaders<br/>WebBaseLoader / URL fetch<br/>tag metadata: origin, source_type, url"]
+        I["ingest.py — load_documents()<br/>read local .txt files (pure Python)<br/>tag metadata: origin, source_type, url"]
     end
 
     subgraph S2["2 · Chunking (routing by length)"]
-        C1["Short reviews &lt; 120 tokens<br/>→ kept whole"]
-        C2["Medium blog reviews<br/>→ RecursiveCharacterTextSplitter<br/>400 tokens · 30 overlap"]
-        C3["Long editorial articles<br/>→ MarkdownHeaderTextSplitter<br/>split by section header"]
+        C1["Short docs &lt; 120 tokens<br/>→ kept whole"]
+        C2["Medium docs<br/>→ recursive token split (pure Python)<br/>400 tokens · 30 overlap"]
+        C3["Long editorial docs<br/>→ split by section header<br/>then recursive split"]
     end
 
     subgraph S3["3 · Embedding + Vector Store"]
-        E["OpenAI text-embedding-3-large<br/>(8,191-token context)"]
+        E["sentence-transformers<br/>bge-large-en-v1.5"]
         V[("Chroma<br/>local vector store<br/>+ chunk metadata")]
     end
 
     subgraph S4["4 · Retrieval"]
-        R["LangChain retriever<br/>top-k 5–8 · MMR<br/>metadata filter by origin / type"]
+        R["Chroma similarity query<br/>top-k 5<br/>metadata filter by origin / type"]
     end
 
     subgraph S5["5 · Generation"]
@@ -165,30 +165,30 @@ flowchart TD
 **Stage 1 — Document Ingestion**
 
 - *AI tool:* Claude (Claude Code).
-- *Input I'll give it:* My *Documents* table (the 13 source URLs and their origins). Prompt: "Implement `ingest.py` using LangChain `WebBaseLoader` to fetch each URL into a `Document`, tagging metadata `origin`, `source_type`, and `url` per the Documents table."
-- *Expected output:* `ingest.py` that loads all 13 sources into `Document` objects with the three metadata fields populated.
-- *How I'll verify:* Confirm all 13 URLs load without error and that every `Document` carries non-empty `origin`/`source_type`/`url` metadata matching the table.
+- *Input I'll give it:* My *Documents* table (sources and their origins). The source articles are saved locally as `.txt` files in `documents/`. Prompt: "Implement `ingest.py` with a pure-Python `load_documents()` that reads every `.txt` in `documents/` into a `Document` (no LangChain), tagging metadata `origin`, `source_type`, and `url` per the Documents table."
+- *Expected output:* `ingest.py` that loads all source files into `Document` objects with the metadata fields populated.
+- *How I'll verify:* Confirm all 12 files load without error and that every `Document` carries non-empty `origin`/`source_type`/`url` metadata matching the table.
 
 **Stage 2 — Chunking**
 
 - *AI tool:* Claude (Claude Code).
-- *Input I'll give it:* My *Chunking Strategy* section (chunk size 400, overlap 30). Prompt: "Implement `chunk_text()` that routes by length — reviews under 120 tokens kept whole, medium blogs via `RecursiveCharacterTextSplitter` at 400 tokens / 30 overlap, long editorial articles via `MarkdownHeaderTextSplitter` split on section headers."
+- *Input I'll give it:* My *Chunking Strategy* section (chunk size 400, overlap 30). Prompt: "Implement `chunk_text()` in pure Python (no LangChain) that routes by length — docs under 120 tokens kept whole, medium docs via a recursive token splitter at 400 tokens / 30 overlap, long editorial docs split by section header first then recursively split."
 - *Expected output:* A `chunk_text()` function implementing the length-based routing, plus a printed chunk count per source.
 - *How I'll verify:* Confirm the splitter uses my exact 400/30 values (not Claude's defaults), that a long article was split on headers rather than mid-sentence, and that short reviews stay whole.
 
 **Stage 3 — Embedding + Vector Store**
 
 - *AI tool:* Claude (Claude Code).
-- *Input I'll give it:* My *Retrieval Approach* section (embedding model). Prompt: "Embed all chunks with OpenAI `text-embedding-3-large` and persist them to a local Chroma store, preserving each chunk's metadata."
+- *Input I'll give it:* My *Retrieval Approach* section (embedding model). Prompt: "Embed all chunks with `sentence-transformers` (`bge-large-en-v1.5`) and persist them to a local Chroma store, preserving each chunk's metadata."
 - *Expected output:* An `embed_and_store()` step that builds and persists the Chroma collection with metadata attached.
 - *How I'll verify:* Check that the Chroma collection count equals the chunk count from Stage 2 and that stored records retain their `origin`/`source_type`/`url` metadata.
 
 **Stage 4 — Retrieval**
 
 - *AI tool:* Claude (Claude Code).
-- *Input I'll give it:* My *Retrieval Approach* section (top-k 5–8). Prompt: "Build a LangChain retriever over the Chroma store using MMR with my top-k, and support pre-filtering on `origin`/`source_type` metadata when the query names a specific origin."
-- *Expected output:* A `get_retriever()` returning an MMR retriever wired to my top-k with optional metadata filtering.
-- *How I'll verify:* Confirm top-k matches my spec (5–8) and run an origin-specific query (e.g. "Sumatra") to confirm the metadata filter narrows results before the vector search.
+- *Input I'll give it:* My *Retrieval Approach* section (top-k 5). Prompt: "Build a `retrieve(query)` function that queries the Chroma collection directly (no LangChain) for my top-k chunks, supporting a `where` metadata pre-filter on `origin`/`source_type` when the query names a specific origin."
+- *Expected output:* A `retrieve(query, k=5)` function that returns the top-k chunks with their metadata, with optional metadata filtering.
+- *How I'll verify:* Confirm top-k matches my spec (5) and run an origin-specific query (e.g. "Sumatra") to confirm the metadata filter narrows results before the vector search.
 
 **Stage 5 — Generation**
 
