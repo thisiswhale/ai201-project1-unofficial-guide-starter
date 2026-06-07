@@ -14,7 +14,7 @@ Regional flavor profiles of coffee
 
 This knowledge is valuable because most coffee drinkers encounter tasting notes every day (on bags, menus, and roaster websites) but have no framework for making sense of them. Knowing that Ethiopian coffees tend toward floral and fruity while Sumatran coffees lean earthy and full-bodied gives you a mental model that applies across every cup you'll ever drink.
 
-It's hard to find through official channels because the information is scattered and inconsistent. Roasters write tasting notes to sell their specific product, not to teach the underlying patterns. The Specialty Coffee Association has rigorous educational materials, but they're designed for industry professionals, not everyday drinkers. No single authoritative source draws the complete map — you have to triangulate across dozens of roasters, importers, and review sites to piece it together yourself.
+It's hard to find through official channels because the information is scattered and inconsistent. Roasters write tasting notes to sell their specific product, not to teach the underlying patterns. No single authoritative source draws the complete map — you have to triangulate across dozens of roasters, importers, and review sites to piece it together yourself.
 ---
 
 ## Documents
