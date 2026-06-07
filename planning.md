@@ -134,7 +134,7 @@ flowchart TD
     end
 
     subgraph S5["5 · Generation"]
-        G["Groq LLM (Llama 3 / Mixtral)<br/>retrieved chunks + query → grounded answer"]
+        G["Groq LLM (Llama 3.3 70B)<br/>llama-3.3-70b-versatile<br/>retrieved chunks + query → grounded answer"]
     end
 
     Q(["User query"])
@@ -193,7 +193,7 @@ flowchart TD
 **Stage 5 — Generation**
 
 - *AI tool:* Claude (Claude Code).
-- *Input I'll give it:* My *Architecture* diagram and *Evaluation Plan* (the 5 test questions). Prompt: "Build `generate(query)`: retrieve chunks and pass them to a Groq LLM (Llama 3 / Mixtral) in a structured prompt that instructs the model to answer **only** from the provided chunks and cite the `url` of each chunk used. Wrap it in a minimal CLI/Streamlit interface."
+- *Input I'll give it:* My *Architecture* diagram and *Evaluation Plan* (the 5 test questions). Prompt: "Build `generate(query)`: retrieve chunks and pass them to a Groq LLM (`llama-3.3-70b-versatile`) in a structured prompt that instructs the model to answer **only** from the provided chunks and cite the `url` of each chunk used. Wrap it in a minimal CLI/Streamlit interface."
 - *Expected output:* A `generate(query)` function with a grounding system prompt and source citations, plus a minimal interface.
 - *How I'll verify:* Run all 5 Evaluation Plan questions against my expected answers, confirm each response cites source URLs, and confirm an off-domain question (e.g. "How do I brew espresso?") is declined rather than hallucinated.
 

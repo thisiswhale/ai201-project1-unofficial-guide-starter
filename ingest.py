@@ -22,13 +22,17 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-DOCUMENTS_DIR = Path(__file__).parent / "documents"
+import config
 
-# Chunking parameters from planning.md (Chunking Strategy section).
-MIN_TOKENS = 120        # docs at or below this are kept whole
-CHUNK_TOKENS = 400      # target chunk size
-OVERLAP_TOKENS = 30     # overlap carried between consecutive chunks
-LONG_DOC_TOKENS = 600   # docs above this are split by section header first
+# Resolve the documents folder (config.DOCS_PATH) relative to this file.
+DOCUMENTS_DIR = (Path(__file__).parent / config.DOCS_PATH).resolve()
+
+# Chunking parameters (sourced from config.py, which mirrors the
+# Chunking Strategy section of planning.md).
+MIN_TOKENS = config.MIN_CHUNK_TOKENS    # docs at or below this are kept whole
+CHUNK_TOKENS = config.CHUNK_SIZE        # target chunk size
+OVERLAP_TOKENS = config.CHUNK_OVERLAP   # overlap carried between consecutive chunks
+LONG_DOC_TOKENS = config.LONG_DOC_TOKENS  # docs above this are split by section first
 
 # Metadata for each source file, keyed by filename stem.
 # Mirrors the Documents table in planning.md.
